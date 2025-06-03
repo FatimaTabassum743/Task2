@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete HTML Form</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form action="/submit" method="post" enctype="multipart/form-data" autocomplete="on">
+  
+  <!-- Personal Details -->
+  <fieldset>
+    <legend>Personal Details</legend>
+    
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required maxlength="50" autofocus><br><br>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" value="user123" size="20" readonly><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" min="1900-01-01" max="2024-12-31"><br><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male" checked>
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+    <input type="radio" id="other" name="gender" value="other">
+    <label for="other">Other</label><br><br>
+  </fieldset>
+
+  <!-- Contact Details -->
+  <fieldset>
+    <legend>Contact Details</legend>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter email" required><br><br>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" placeholder="e.g., 9876543210" maxlength="10"><br><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address" rows="4" cols="40" placeholder="Your address here..."></textarea><br><br>
+
+    <label for="search">Search Profile:</label>
+    <input type="search" id="search" name="search"><br><br>
+  </fieldset>
+
+  <!-- Preferences -->
+  <fieldset>
+    <legend>Preferences</legend>
+
+    <p>Select Hobbies:</p>
+    <input type="checkbox" id="cricket" name="hobbies" value="cricket" checked>
+    <label for="cricket">Cricket</label>
+    <input type="checkbox" id="music" name="hobbies" value="music">
+    <label for="music">Music</label>
+    <input type="checkbox" id="reading" name="hobbies" value="reading" disabled>
+    <label for="reading">Reading (Disabled)</label><br><br>
+
+    <label for="color">Favorite Color:</label>
+    <input type="color" id="color" name="favcolor" value="#00ff00"><br><br>
+
+    <label for="volume">Set Volume (0–100):</label>
+    <input type="range" id="volume" name="volume" min="0" max="100" step="10" value="50"><br><br>
+
+    <label for="time">Best Contact Time:</label>
+    <input type="time" id="time" name="contact_time"><br><br>
+
+    <label for="country">Select Country:</label>
+    <select id="country" name="country">
+      <optgroup label="Asia">
+        <option value="in">India</option>
+        <option value="jp">Japan</option>
+      </optgroup>
+      <optgroup label="Europe">
+        <option value="fr">France</option>
+        <option value="de">Germany</option>
+      </optgroup>
+    </select><br><br>
+  </fieldset>
+
+  <!-- Upload -->
+  <fieldset>
+    <legend>Upload Section</legend>
+
+    <label for="resume">Upload Syllabus</label>
+    <input type="file" id="resume" name="resume" required><br><br>
+  </fieldset>
+
+  <!-- Buttons -->
+  <fieldset>
+    <legend>Submit Form</legend>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+    <button type="button" onclick="alert('This is a custom button!')">Click Me</button>
+  </fieldset>
+
+</form>
+
+<!-- Navigation Example -->
+<p><a href="Contact.html">Go To Contact Page</a></p>
+
+</body>
+</html>

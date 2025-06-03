@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Forms Full Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .feedback {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML Forms Quiz</h1>
+  <p><strong>Total Questions:</strong> 25 (20 MCQs + 5 Descriptive)</p>
+
+  <form id="quizForm">
+
+    <!-- Multiple Choice Questions -->
+    <h2>Multiple Choice Questions</h2>
+
+    <div class="question">
+      <p>1. Which tag is used to create a form in HTML?</p>
+      <label><input type="radio" name="q1" value="wrong" onclick="checkAnswer(this)"> &lt;input&gt;</label><br>
+      <label><input type="radio" name="q1" value="correct" onclick="checkAnswer(this)"> &lt;form&gt;</label><br>
+      <label><input type="radio" name="q1" value="wrong" onclick="checkAnswer(this)"> &lt;textarea&gt;</label><br>
+      <label><input type="radio" name="q1" value="wrong" onclick="checkAnswer(this)"> &lt;fieldset&gt;</label><br>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+
+    <!-- Repeat this pattern for the next 19 questions -->
+    <!-- For brevity, only listing the next 19 questions briefly -->
+
+    <!-- Sample -->
+    <!-- COPY the pattern of q1 and change values for each -->
+    <script>
+      const questions = [
+        {
+          q: "2. Which attribute specifies where the form data is sent?",
+          a: ["method", "action", "enctype", "name"],
+          correct: "action"
+        },
+        {
+          q: "3. What input type is used for entering passwords?",
+          a: ["text", "email", "password", "hidden"],
+          correct: "password"
+        },
+        {
+          q: "4. What input type allows users to pick a file?",
+          a: ["upload", "file", "select", "text"],
+          correct: "file"
+        },
+        {
+          q: "5. Which attribute makes a form field required?",
+          a: ["placeholder", "validate", "required", "mandatory"],
+          correct: "required"
+        },
+        {
+          q: "6. Which input type is used for selecting only one option?",
+          a: ["radio", "checkbox", "select", "multiple"],
+          correct: "radio"
+        },
+        {
+          q: "7. What input type is used to enter a number?",
+          a: ["text", "number", "float", "decimal"],
+          correct: "number"
+        },
+        {
+          q: "8. What is the purpose of the 'name' attribute in a form field?",
+          a: ["To style the input", "To bind JavaScript", "To send data to server", "To change ID"],
+          correct: "To send data to server"
+        },
+        {
+          q: "9. Which input type creates a submit button?",
+          a: ["submit", "button", "reset", "text"],
+          correct: "submit"
+        },
+        {
+          q: "10. Which input type hides text while typing?",
+          a: ["email", "text", "hidden", "password"],
+          correct: "password"
+        },
+        {
+          q: "11. What does 'novalidate' do on a form?",
+          a: ["Enables validation", "Disables validation", "Submits silently", "Clears form"],
+          correct: "Disables validation"
+        },
+        {
+          q: "12. Which input type is best for selecting a date?",
+          a: ["calendar", "datetime", "date", "text"],
+          correct: "date"
+        },
+        {
+          q: "13. Which attribute shows hint text in an input box?",
+          a: ["label", "title", "placeholder", "alt"],
+          correct: "placeholder"
+        },
+        {
+          q: "14. What tag is used for grouping related fields in a form?",
+          a: ["fieldset", "legend", "group", "section"],
+          correct: "fieldset"
+        },
+        {
+          q: "15. How do you group radio buttons together?",
+          a: ["Same value", "Same ID", "Same name", "Same type"],
+          correct: "Same name"
+        },
+        {
+          q: "16. What input type is used for slider input?",
+          a: ["range", "scroll", "slider", "input"],
+          correct: "range"
+        },
+        {
+          q: "17. What does 'autocomplete' do in a form?",
+          a: ["Fills data automatically", "Encrypts data", "Skips validation", "Submits without click"],
+          correct: "Fills data automatically"
+        },
+        {
+          q: "18. What is the default method of a form?",
+          a: ["post", "get", "put", "none"],
+          correct: "get"
+        },
+        {
+          q: "19. What tag defines dropdown options?",
+          a: ["<select>", "<dropdown>", "<option>", "<value>"],
+          correct: "<option>"
+        },
+        {
+          q: "20. What attribute sets the maximum characters in input?",
+          a: ["maxlength", "limit", "maxchar", "length"],
+          correct: "maxlength"
+        }
+      ];
+
+      window.onload = function () {
+        const form = document.getElementById("quizForm");
+        questions.forEach((item, index) => {
+          const qNum = index + 2;
+          const container = document.createElement("div");
+          container.className = "question";
+          container.innerHTML = `<p>${item.q}</p>` +
+            item.a.map(option => `
+              <label>
+                <input type="radio" name="q${qNum}" value="${option}" onclick="checkDynamicAnswer(this, '${item.correct}', ${qNum})">
+                ${option}
+              </label><br>`).join("") +
+            `<div class="feedback" id="feedback${qNum}"></div>`;
+          form.insertBefore(container, document.getElementById("descriptiveStart"));
+        });
+      }
+
+      function checkAnswer(radio) {
+        const questionNumber = radio.name.slice(1);
+        const feedback = document.getElementById('feedback' + questionNumber);
+        if (radio.value === "correct") {
+          feedback.textContent = "Correct!";
+          feedback.className = "feedback correct";
+        } else {
+          feedback.textContent = "Wrong!";
+          feedback.className = "feedback wrong";
+        }
+      }
+
+      function checkDynamicAnswer(radio, correctAnswer, qNum) {
+        const feedback = document.getElementById('feedback' + qNum);
+        if (radio.value === correctAnswer) {
+          feedback.textContent = "Correct!";
+          feedback.className = "feedback correct";
+        } else {
+          feedback.textContent = "Wrong!";
+          feedback.className = "feedback wrong";
+        }
+      }
+    </script>
+
+    <!-- Descriptive Questions -->
+    <h2 id="descriptiveStart">Descriptive Questions (Write Your Answer)</h2>
+
+    <div class="question">
+      <p>21. What is the difference between GET and POST method in HTML forms?</p>
+      <textarea name="desc1" placeholder="Write your answer here..."></textarea>
+    </div>
+
+    <div class="question">
+      <p>22. Explain the purpose of the enctype attribute. When do we use it?</p>
+      <textarea name="desc2" placeholder="Write your answer here..."></textarea>
+    </div>
+
+    <div class="question">
+      <p>23. Why is the name attribute important in input elements?</p>
+      <textarea name="desc3" placeholder="Write your answer here..."></textarea>
+    </div>
+
+    <div class="question">
+      <p>24. What is the difference between radio and checkbox inputs?</p>
+      <textarea name="desc4" placeholder="Write your answer here..."></textarea>
+    </div>
+
+    <div class="question">
+      <p>25. Describe the use of the 'placeholder' attribute in input elements.</p>
+      <textarea name="desc5" placeholder="Write your answer here..."></textarea>
+    </div>
+
+  </form>
+
+</body>
+</html>
